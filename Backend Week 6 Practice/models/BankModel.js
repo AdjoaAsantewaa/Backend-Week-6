@@ -20,7 +20,17 @@ const BankSchema = new mongoose.Schema({
     accountNumber:{
         type: Number,
         required: true,
-    }
+    },
+    accounts: [
+        {
+            accounId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Account",
+                required: true,
+
+            },
+        }
+    ]
 });
 
 const BankModel = mongoose.model("Bank", BankSchema);

@@ -1,4 +1,4 @@
-const BankModel = require("../models/bank");
+const BankModel = require("../models/BankModel");
 
 const createBankDetails = async (req, res) => {
     // getting information from request body
@@ -58,18 +58,21 @@ const updateBankDetails = (req, res) => {
     }
 };
 
-const deleteBankDetails = (req, res) => {
+const deleteBankDetails = async (req, res) => {
     try {
-        const bankId = BankModel.findById(req.params.id)
+        const deletebankId = await BankModel.findByIdAndDelete(req.params.id)
 
-        if(bankId) {
-            bankId.deleteOne()
-            res.json("Bank removed")
-
+        if(deletebankId) {
+            AccountModel.deleteMany({bankId: deletebankId._id})
+            .then((deleteBank) => {
+                res.status(201).json({message:"Bank removed", deletebankId})
+            })
+            .catch((err) => console.log(err));
         } else{
-            res.json("bank not found")
+            res.status(501).json("bank not found")
         }
     } catch(error) {
+        res.status(500).json({error: error.message})
 
     }
 }
