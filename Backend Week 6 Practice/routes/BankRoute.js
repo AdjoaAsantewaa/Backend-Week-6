@@ -1,8 +1,11 @@
 const express = require('express'); 
-const { createBankDetails, retrieveBankDetails } = require('../controllers/BankController');
+const { createBankDetails, retrieveBankDetails, updateBankDetails, deleteBankDetails } = require('../controllers/BankController');
 const router = express.Router();
 
 router.post("/bank", createBankDetails);
 router.get("/bank/:id?", retrieveBankDetails);
+router.put("/bank/:id?", updateBankDetails )
+router.delete("/bank/:id?", deleteBankDetails)
+
 module.exports = router;
 
