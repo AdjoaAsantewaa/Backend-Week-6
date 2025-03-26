@@ -34,6 +34,6 @@ const AccountSchema = Schema({
     },
 });
 
-const AccountModel = mongoose.Model("Account", AccountSchema)
+const AccountModel = mongoose.model("Account", AccountSchema)
 
 module.exports = AccountModel

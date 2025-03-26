@@ -7,7 +7,7 @@ const createAccountController = (req, res) => {
     account.save().then((account) =>{
         // res.json(account)
         if (account) {
-            res.json({message: "Account created successfully"})
+            res.json({message: "Account created successfully", account})
         } else {
             res.json("Failed to create account")
         }
@@ -31,3 +31,11 @@ const retrieveAccountDetails = (req, res) => {
 module.exports = ({createAccountController, retrieveAccountDetails})
 
 
+// {
+// "name": "Calbank",
+// "accountType": "Savings",
+// "accountNumber": "P.O. Box 567",
+// "phone": "020958697",
+// "address": "Cantoments",
+// "bankId": "67e2ca843401a0cf33b82967"
+// }
